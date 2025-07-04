@@ -11,42 +11,101 @@ In this microservice I used the best architecture concepts: Onion Architecture, 
 | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | ![Statements](https://img.shields.io/badge/statements-100%25-brightgreen.svg?style=flat) | ![Branches](https://img.shields.io/badge/branches-100%25-brightgreen.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-100%25-brightgreen.svg?style=flat) | ![Lines](https://img.shields.io/badge/lines-100%25-brightgreen.svg?style=flat) |
 
+### Architecture overview
+
+This repository is organized following the principles of Domain-Driven Design (DDD) and the Onion Architecture.
+
+- **core** – domain layer with entities, repository contracts and use cases. Business logic such as `PermissionCreateUsecase` lives here independent of any framework.
+- **infra** – infrastructure implementations (databases, logger, email, etc.) that satisfy interfaces defined in `core`.
+- **libs** – shared libraries providing cross-cutting concerns like token or crypto utilities.
+- **modules** – NestJS modules that expose controllers and wire adapters with `core` use cases. For instance, `UserModule` assembles controllers, repositories from `infra` and use cases from `core`.
+
+Each layer depends only on the inner ones, forming the onion: modules → infra/libs → core.
+
+For example, the `PermissionCreateUsecase` resides in `core` and contains the domain rule for creating permissions. `UserModule` in the `modules` layer uses this use case together with a repository implementation from `infra`, illustrating how outer layers orchestrate inner ones.
+
+### Adding new components
+
+To introduce new features, follow these steps that tie Domain-Driven Design (DDD) with the concentric rings of the Onion Architecture:
+
+1. **Define the domain** (**DDD**) – create a folder inside `src/core` for your concept (e.g. `product`). Add entities, repository interfaces and use cases such as `ProductCreateUsecase`.
+2. **Provide infrastructure** (**Onion outer ring**) – implement the repository contracts under `src/infra` and configure any database schemas or services required.
+3. **Expose through a module** (**Onion outer ring**) – in `src/modules`, wire a NestJS module that connects controllers and adapters to the use cases from `core`. For instance, `UserModule` wires `PermissionCreateUsecase` with its repository implementation.
+4. **Share cross‑cutting libs** (optional) – place reusable code like cryptography or token helpers in `src/libs`.
+
+This separation keeps business logic isolated from frameworks while allowing modules to integrate new infrastructure or libraries without breaking the domain layer.
+
+#### Example: building a Product catalog
+
+Below is a simple walkthrough demonstrating how a new domain maps to each layer.
+
+1. **Create the domain (DDD)** – under `src/core/product` add:
+   - `entity/product.ts` – the `Product` entity with validations.
+   - `repository/product.ts` – `IProductRepository` interface.
+   - `use-cases/product-create.ts` – `ProductCreateUsecase` containing business logic.
+   These files represent the innermost Onion ring where business rules live.
+
+2. **Implement infrastructure** – in `src/infra/repository/postgres/product.repository.ts` implement `IProductRepository` with a database model. Any schemas or adapters go here, sitting in the outer ring.
+
+3. **Wire a module** – create `src/modules/product` containing `controller.ts`, `repository.ts` and `module.ts`. `ProductModule` injects the `ProductCreateUsecase` with the repository implementation and exposes an HTTP endpoint.
+
+4. **Share libraries** – if the product domain needs helpers (e.g., a SKU generator), place them in `src/libs` so other modules can reuse them.
+
+Algorithm summary:
+
+1. Define your domain and use cases inside `core`.
+2. Implement repositories or services under `infra`.
+3. Assemble a NestJS module under `modules` that connects controllers to the domain through providers.
+4. Extract reusable pieces to `libs` when needed.
+
 ### Building and Running the application
 
 - install node version
+
   ```bash
-  $ nvm install
+  nvm install
   ```
+
   ```bash
-  $ nvm use
+  nvm use
   ```
+
 - install dependencies
+
   ```
-  $ yarn
+  yarn
   ```
+
 - infra
+
   ```
-   $ yarn infra
+   yarn infra
   ```
+
 - running
 
   - dev
+
     ```
-    $ yarn start:dev
+    yarn start:dev
     ```
+
   - debug
+
     ```
-    $ start:debug
+    start:debug
     ```
+
   - production
+
     ```
-    $ yarn start
+    yarn start
     ```
 
 - build
 
   ```
-  $ yarn build
+  yarn build
   ```
 
 ---
@@ -69,9 +128,11 @@ curl -X 'POST' \
 Creating a CRUD in Postgres and Mongo in seconds.
 
 - run
+
   ```
-  $ yarn scaffold
+  yarn scaffold
   ```
+
 - Choose database for CRUD.
 - `(x) POSTGRES:CRUD`
 - `( ) MONGO:CRUD`
@@ -126,47 +187,57 @@ Creating a CRUD in Postgres and Mongo in seconds.
 ### Postgres migrations
 
 - create
+
   ```
-  $ yarn migration-postgres:create
+  yarn migration-postgres:create
   ```
+
 - run
 
   ```
-  $ yarn migration-postgres:run
+  yarn migration-postgres:run
   ```
 
 ### Mongo migrations
 
 - create
+
   ```
-  $ yarn migration-mongo:create
+  yarn migration-mongo:create
   ```
+
 - run
 
   ```
-  $ yarn migration-mongo:run
+  yarn migration-mongo:run
   ```
 
 ### Test
 
 - run
+
   ```
-  $ yarn test
+  yarn test
   ```
+
 - coverage
+
   ```
-  $ yarn test:cov
+  yarn test:cov
   ```
 
 ### Lint
 
 - lint
+
   ```
-  $ yarn lint
+  yarn lint
   ```
+
 - prettier
+
   ```
-  $ yarn prettier
+  yarn prettier
   ```
 
 ### snippets
@@ -193,7 +264,7 @@ docs
 
 ![alt text](diagram.png)
 
-### Microservice architecture.
+### Microservice architecture
 
 - I18n
 - Circuit Breaker
