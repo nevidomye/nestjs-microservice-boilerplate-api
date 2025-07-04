@@ -41,6 +41,10 @@ import { EnvEnum } from './types';
           PORT: z.number(),
           PROMETHUES_URL: z.string().url(),
           REDIS_URL: z.string().url(),
+          RABBITMQ: z.object({
+            URL: z.string().url(),
+            QUEUE: z.string()
+          }),
           TOKEN_EXPIRATION: z.string(),
           ZIPKIN_URL: z.string().url(),
           EMAIL: z.object({

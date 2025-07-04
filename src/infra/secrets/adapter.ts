@@ -34,6 +34,11 @@ export abstract class ISecretsAdapter {
 
   REDIS_URL: string;
 
+  RABBITMQ: {
+    URL?: string;
+    QUEUE?: string;
+  };
+
   ZIPKIN_URL: string;
 
   PROMETHUES_URL: string;

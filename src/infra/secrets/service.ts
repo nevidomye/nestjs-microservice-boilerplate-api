@@ -28,6 +28,11 @@ export class SecretsService implements ISecretsAdapter {
 
   REDIS_URL = this.config.get('REDIS_URL');
 
+  RABBITMQ = {
+    URL: this.config.get('RABBITMQ_URL'),
+    QUEUE: this.config.get('RABBITMQ_QUEUE')
+  };
+
   MONGO = {
     MONGO_URL: this.config.get('MONGO_URL'),
     MONGO_DATABASE: this.config.get('MONGO_DATABASE'),
