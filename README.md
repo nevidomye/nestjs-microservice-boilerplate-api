@@ -73,13 +73,13 @@ Algorithm summary:
 - install dependencies
 
   ```
-  yarn
+  pnpm install
   ```
 
 - infra
 
   ```
-   yarn infra
+   pnpm run infra
   ```
 
 - running
@@ -87,7 +87,7 @@ Algorithm summary:
   - dev
 
     ```
-    yarn start:dev
+    pnpm start:dev
     ```
 
   - debug
@@ -99,13 +99,13 @@ Algorithm summary:
   - production
 
     ```
-    yarn start
+    pnpm start
     ```
 
 - build
 
   ```
-  yarn build
+  pnpm build
   ```
 
 ---
@@ -130,7 +130,7 @@ Creating a CRUD in Postgres and Mongo in seconds.
 - run
 
   ```
-  yarn scaffold
+  pnpm run scaffold
   ```
 
 - Choose database for CRUD.
@@ -189,13 +189,13 @@ Creating a CRUD in Postgres and Mongo in seconds.
 - create
 
   ```
-  yarn migration-postgres:create
+  pnpm run migration-postgres:create
   ```
 
 - run
 
   ```
-  yarn migration-postgres:run
+  pnpm run migration-postgres:run
   ```
 
 ### Mongo migrations
@@ -203,13 +203,13 @@ Creating a CRUD in Postgres and Mongo in seconds.
 - create
 
   ```
-  yarn migration-mongo:create
+  pnpm run migration-mongo:create
   ```
 
 - run
 
   ```
-  yarn migration-mongo:run
+  pnpm run migration-mongo:run
   ```
 
 ### Test
@@ -217,13 +217,13 @@ Creating a CRUD in Postgres and Mongo in seconds.
 - run
 
   ```
-  yarn test
+  pnpm test
   ```
 
 - coverage
 
   ```
-  yarn test:cov
+  pnpm test:cov
   ```
 
 ### Lint
@@ -231,13 +231,13 @@ Creating a CRUD in Postgres and Mongo in seconds.
 - lint
 
   ```
-  yarn lint
+  pnpm lint
   ```
 
 - prettier
 
   ```
-  yarn prettier
+  pnpm prettier
   ```
 
 ### snippets
@@ -327,7 +327,7 @@ docs
 ├── jest-coverage.config.ts
 ├── jest.config.ts
 ├── nest-cli.json
-├── package-lock.json
+├── pnpm-lock.yaml
 ├── package.json
 ├── scripts
 │   └── npm-audit.sh
@@ -656,7 +656,7 @@ docs
 │   └── initialization.ts
 ├── tsconfig.build.json
 ├── tsconfig.json
-└── yarn.lock
+└── pnpm-lock.yaml
 ```
 
 ---
