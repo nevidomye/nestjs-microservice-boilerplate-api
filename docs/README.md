@@ -8,16 +8,21 @@ Documentation:
 ---
 
 - install dependencies
+
   ```
-  $ yarn doc:install
+  pnpm run doc:install
   ```
+
 - running infra
+
   ```
-  $ yarn infra
+  pnpm run infra
   ```
+
 - starting doc
+
   ```
-  $ yarn start
+  pnpm start
   ```
 
 ---

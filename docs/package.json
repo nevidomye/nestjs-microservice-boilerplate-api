@@ -2,20 +2,22 @@
   "name": "docs",
   "version": "0.1.0",
   "type": "commonjs",
+  "packageManager": "pnpm@10.5.2",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "doc:install": "npx tsp install",
     "doc:init": "npx tsp init",
     "doc:compiler": "npx tsp compile ./src --watch",
     "doc:start": "browser-sync start --proxy 'localhost:8080' --files './tsp-output/@typespec/openapi3/openapi.api.1.0.yaml' ",
-    "start": "concurrently \"yarn doc:start\" \"yarn doc:compiler\"",
+    "start": "concurrently \"pnpm run doc:start\" \"pnpm run doc:compiler\"",
     "infra": "docker-compose down --volumes && docker-compose up --build --remove-orphans"
   },
   "peerDependencies": {
-    "@typespec/compiler": "latest",
-    "@typespec/http": "latest",
-    "@typespec/openapi3": "latest",
-    "@typespec/rest": "latest",
-    "@typespec/versioning": "latest"
+    "@typespec/compiler": "*",
+    "@typespec/http": "*",
+    "@typespec/openapi3": "*",
+    "@typespec/rest": "*",
+    "@typespec/versioning": "*"
   },
   "devDependencies": {
     "@typespec/compiler": "latest",
