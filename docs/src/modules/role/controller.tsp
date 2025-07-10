@@ -15,7 +15,7 @@ using OpenAPI;
 using Utils.Versioning;
 using Utils.Exception;
 
-@service({
+@service(#{
   title: "Role",
 })
 namespace api.Role;

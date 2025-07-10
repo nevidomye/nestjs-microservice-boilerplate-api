@@ -12,20 +12,14 @@ import "./modules/health/controller.tsp";
 import "./modules/cat/controller.tsp";
 
 using TypeSpec.Http;
+using TypeSpec.OpenAPI;
 using Utils.Versioning;
 using TypeSpec.Versioning;
 
-@service({
-  title: "Microservice API",
-  contact: {
-    name: "API Support",
-    email: "mike.rodrigues.lima@gmail.com",
-  },
-  license: {
-    name: "MIT",
-    url: "https://opensource.org/license/mit",
-  },
+@service(#{            
+  title: "Microservice API"
 })
+
 @server("http://localhost:4000/")
 @versioned(DocVersionVersion)
 namespace api;

@@ -14,7 +14,7 @@ using Utils.Versioning;
 using Utils.Exception;
 using Utils.Model;
 
-@service({
+@service(#{
   title: "Login",
 })
 namespace api.Login;
