@@ -15,7 +15,7 @@ using OpenAPI;
 using Utils.Versioning;
 using Utils.Exception;
 
-@service({
+@service(#{
   title: "Reset password",
 })
 namespace api.ResetPassword;

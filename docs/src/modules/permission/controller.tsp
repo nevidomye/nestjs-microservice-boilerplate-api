@@ -14,7 +14,7 @@ using TypeSpec.Http;
 using TypeSpec.Versioning;
 using OpenAPI;
 
-@service({
+@service(#{
   title: "Permission",
 })
 namespace api.Permission;

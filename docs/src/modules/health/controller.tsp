@@ -10,7 +10,7 @@ using TypeSpec.Versioning;
 using OpenAPI;
 using Utils.Model;
 
-@service({
+@service(#{
   title: "Health",
 })
 namespace api.Health;
