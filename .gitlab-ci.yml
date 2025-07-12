@@ -1,0 +1,32 @@
+image: node:22
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+  NODE_ENV: test
+
+stages:
+  - test
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .pnpm-store
+
+before_script:
+  - apt-get update && apt-get install -y docker.io docker-compose
+  - corepack enable
+  - pnpm install --frozen-lockfile
+
+test:
+  stage: test
+  before_script:
+    - docker-compose -f docker-compose-infra.yml up -d
+  script:
+    - pnpm test
+  after_script:
+    - docker-compose -f docker-compose-infra.yml down -v
