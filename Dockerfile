@@ -8,6 +8,6 @@ RUN npm i -g @nestjs/cli
 RUN npm ci --omit=dev --ignore-scripts
 RUN npm run build
 
-RUN ls dist/src -al
+RUN ls dist -al
 
-CMD ["node", "dist/src/main.js"]
+CMD ["node", "dist/main.js"]
