@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/nevidomye/nestjs-microservice-boilerplate-api/compare/v1.5.0-production...v1.5.1-production) (2025-07-13)
+
+
+### Bug Fixes
+
+* **config:** add pnpm install ([591056c](https://github.com/nevidomye/nestjs-microservice-boilerplate-api/commit/591056cadf2207f24ada6242055c736ad1886edb))
+* **config:** update docker entrypoint ([e23ca95](https://github.com/nevidomye/nestjs-microservice-boilerplate-api/commit/e23ca952c060137d389c084defedd4685dbc5eda))
+* **migration:** fix tsp code incompatibility with latest version ([84227d0](https://github.com/nevidomye/nestjs-microservice-boilerplate-api/commit/84227d0f35717fab51cbc89ff59bef381fa4f688))
+
 # [1.5.0](https://github.com/mikemajesty/nestjs-microservice-boilerplate-api/compare/v1.4.0-production...v1.5.0-production) (2025-04-24)
 
 
